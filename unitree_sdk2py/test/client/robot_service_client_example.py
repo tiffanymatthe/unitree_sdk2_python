@@ -1,9 +1,14 @@
 import time
+import sys
 from unitree_sdk2py.core.channel import ChannelFactoryInitialize
 from unitree_sdk2py.go2.robot_state.robot_state_client import RobotStateClient
 
 if __name__ == "__main__":
-    ChannelFactoryInitialize(0, "enx000ec6768747")
+    if len(sys.argv)>1:
+        ChannelFactoryInitialize(0, sys.argv[1])
+    else:
+        ChannelFactoryInitialize(0)
+
     rsc = RobotStateClient()
     rsc.SetTimeout(3.0)
     rsc.Init()
